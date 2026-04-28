@@ -1,0 +1,32 @@
+# Dedicated requirements for olmocr_agentic_gui.py
+# Use a separate env to avoid conflicts with inference/webapp runtimes.
+
+# Core ML/runtime
+transformers==4.57.3
+accelerate
+huggingface-hub>=0.34.0,<1.0
+compressed-tensors
+
+# Torch stack (installed from CUDA index in launcher)
+# torch
+# torchvision
+# torchaudio
+
+# PDF + image handling
+pypdf
+pdf2image
+pypdfium2
+pillow
+
+# Data + API helpers
+pandas
+openai
+langextract
+
+# Optional side integrations used by companion GUIs
+streamlit
+gradio
+nicegui
+
+# Packaging stability
+setuptools<82

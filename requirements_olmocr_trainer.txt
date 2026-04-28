@@ -1,0 +1,16 @@
+# Dedicated requirements for olmocr_trainer.py
+# Use with a separate conda environment to avoid conflicts.
+
+# Core ML/runtime
+transformers==4.57.3
+accelerate
+huggingface-hub>=0.34.0,<1.0
+
+# PDF + image handling
+pypdf
+pdf2image
+pypdfium2
+pillow
+
+# Packaging stability
+setuptools<82
