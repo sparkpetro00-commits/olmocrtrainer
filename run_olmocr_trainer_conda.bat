@@ -49,6 +49,20 @@ if errorlevel 1 (
   exit /b 1
 )
 
+set "POPPLER_BIN="
+if exist "C:\Users\admin\Tools\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=C:\Users\admin\Tools\poppler-25.12.0\Library\bin"
+if not defined POPPLER_BIN if exist "C:\Users\admin\Tools\poppler-25.12.0\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=C:\Users\admin\Tools\poppler-25.12.0\poppler-25.12.0\Library\bin"
+if not defined POPPLER_BIN if exist "%USERPROFILE%\Tools\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=%USERPROFILE%\Tools\poppler-25.12.0\Library\bin"
+if not defined POPPLER_BIN if exist "%USERPROFILE%\Tools\poppler-25.12.0\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=%USERPROFILE%\Tools\poppler-25.12.0\poppler-25.12.0\Library\bin"
+if not defined POPPLER_BIN if exist "%USERPROFILE%\Downloads\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=%USERPROFILE%\Downloads\poppler-25.12.0\Library\bin"
+if not defined POPPLER_BIN if exist "%USERPROFILE%\Downloads\poppler-25.12.0\poppler-25.12.0\Library\bin\pdfinfo.exe" set "POPPLER_BIN=%USERPROFILE%\Downloads\poppler-25.12.0\poppler-25.12.0\Library\bin"
+if defined POPPLER_BIN (
+  echo Detected Poppler at: %POPPLER_BIN%
+  set "PATH=%POPPLER_BIN%;%PATH%"
+) else (
+  echo Poppler auto-detect did not find a known path.
+)
+
 where pdfinfo >nul 2>&1
 if errorlevel 1 (
   echo.
