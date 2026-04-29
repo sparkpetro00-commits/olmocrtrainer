@@ -34,11 +34,11 @@ echo Installing trainer dependencies...
 call "%CONDA_BAT%" run -n "%ENV_NAME%" python -m pip install --upgrade pip wheel "setuptools<82"
 call "%CONDA_BAT%" run -n "%ENV_NAME%" python -m pip uninstall -y torch torchvision torchaudio >nul 2>&1
 call "%CONDA_BAT%" run -n "%ENV_NAME%" python -m pip install --force-reinstall --no-cache-dir --index-url https://download.pytorch.org/whl/cu128 "torch==2.11.0+cu128" "torchvision==0.26.0+cu128" "torchaudio==2.11.0+cu128"
-call "%CONDA_BAT%" run -n "%ENV_NAME%" python -m pip install transformers==4.57.3 accelerate huggingface-hub pypdf pdf2image pypdfium2 pillow
+call "%CONDA_BAT%" run -n "%ENV_NAME%" python -m pip install transformers==4.57.3 accelerate huggingface-hub compressed-tensors pypdf pdf2image pypdfium2 pillow
 
 echo Verifying GPU + PDF toolchain...
 call "%CONDA_BAT%" run -n "%ENV_NAME%" python -c "import torch,shutil; print('Torch:',torch.__version__,'CUDA:',torch.version.cuda,'available:',torch.cuda.is_available(),'GPU:',torch.cuda.device_count()); print('pdfinfo:',shutil.which('pdfinfo')); print('pdftoppm:',shutil.which('pdftoppm'))"
-call "%CONDA_BAT%" run -n "%ENV_NAME%" python -c "import transformers,torch,torchvision; from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration; print('transformers',transformers.__version__,'qwen2.5-vl import OK')"
+call "%CONDA_BAT%" run -n "%ENV_NAME%" python -c "import transformers,torch,torchvision,compressed_tensors; from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration; print('transformers',transformers.__version__,'qwen2.5-vl import OK')"
 if errorlevel 1 (
   echo.
   echo ERROR: Qwen2.5-VL runtime import failed.

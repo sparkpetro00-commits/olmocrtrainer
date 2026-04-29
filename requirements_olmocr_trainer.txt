@@ -5,6 +5,7 @@
 transformers==4.57.3
 accelerate
 huggingface-hub>=0.34.0,<1.0
+compressed-tensors
 
 # PDF + image handling
 pypdf
